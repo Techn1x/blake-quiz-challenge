@@ -1,0 +1,32 @@
+<quiz-result>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{@quiz.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted" data-test-result-summary>{{floor (mult (div correctAnswerCount @quiz.questions.length) 100)}}% - {{correctAnswerCount}} of {{@quiz.questions.length}} correct</h6>
+      {{!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--}}
+      
+      {{!-- Results for each question --}}
+      {{#bs-accordion as |acc|}}
+        {{#each @quiz.questions as |question j|}}
+          {{#let (get-index @result.answers j) as |userAnswer|}}
+            {{#acc.item value=j data-test-question-index=j as |aitem|}}
+              {{#aitem.title}}
+                {{question.question}}
+                {{#if (eq userAnswer question.correctAnswer)}}
+                  {{fa-icon "check" class="text-success"}}
+                {{else}}
+                  {{fa-icon "times" class="text-danger"}}
+                {{/if}}
+              {{/aitem.title}}
+              {{#aitem.body}}
+                <div data-test-question-correct>Correct answer: {{get-index question.answers question.correctAnswer}}</div>
+                <div data-test-question-user>Your answer: {{get-index question.answers userAnswer}}</div>
+              {{/aitem.body}}
+            {{/acc.item}}
+          {{/let}}
+        {{/each}}
+      {{/bs-accordion}}
+      
+    </div>
+  </div>
+</quiz-result>
