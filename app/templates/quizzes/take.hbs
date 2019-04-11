@@ -2,6 +2,22 @@
   {{model.title}}
 </h1>
 
+{{#if quizComplete}}
+  Quiz complete!
+{{else}}
+  Question {{add submittedAnswers.length 1}} of {{model.questions.length}}
+{{/if}}
+
+{{!-- Question progress --}}
+{{#bs-progress as |p|}}
+  {{p.bar value=submittedAnswers.length minValue=-0.1 maxValue=model.questions.length}}
+{{/bs-progress}}
+
 <hr class="my-4">
 
-Quiz questions here
+{{!-- Show either current question, or submit answers button --}}
+{{#if quizComplete}}
+  {{bs-button defaultText="Submit Answers" onClick=(action "submitAnswers" submittedAnswers)}}
+{{else}}
+  {{question-form question=currentQuestion onAnswer=(action "setAnswer")}}
+{{/if}}

@@ -1,0 +1,14 @@
+<question-title>
+  {{@question.question}}
+</question-title>
+
+{{#each @question.answers as |choice index|}}
+  <div class="checkbox">
+    <label data-test-choice-id={{index}}>
+      <input type="radio" name={{index}} checked={{eq answerIndex index}} onclick={{action (mut answerIndex) index}}>
+      {{choice}}
+    </label>
+  </div>
+{{/each}}
+
+{{bs-button defaultText="Next" onClick=(action @onAnswer answerIndex)}}
