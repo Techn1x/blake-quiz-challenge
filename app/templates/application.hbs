@@ -1,5 +1,56 @@
-User List
-{{#each model as |user|}}
-  <div>{{user.name}}</div>
-{{/each}}
-{{outlet}}
+<div class="container">
+  
+  {{#if currentUser.user}}
+    {{!-- 'Logged in' show navigation & main panel outlet --}}
+    {{#bs-nav type="tabs" as |nav|}}
+      {{#nav.item}}{{#nav.link-to "index"}}Home{{/nav.link-to}}{{/nav.item}}
+      {{#nav.item}}{{#nav.link-to "quizzes.index"}}Quizzes{{/nav.link-to}}{{/nav.item}}
+      {{#nav.item}}{{#nav.link-to "results"}}Results{{/nav.link-to}}{{/nav.item}}
+    {{/bs-nav}}
+  
+    <main-panel class="jumbotron">
+      {{outlet}}
+    </main-panel>
+  {{else}}
+    {{!-- Need to 'log in', provide login panel form --}}
+    <login-panel class="jumbotron">
+      <h1 class="display-4">Quiz Master</h1>
+      <p class="lead">Please enter (or select) your student acccount name below.</p>
+      <hr class="my-4">
+      
+      <form>
+        {{!-- Text entry --}}
+        <div class="form-group">
+          {{input type="text" class="form-control" value=nameEntry placeholder="eg 'Brad'"}}
+          {{#if isNewUser}}
+            <small>
+              A new user will be created
+            </small>
+          {{/if}}
+        </div>
+        
+        {{!-- Or user select --}}
+        <div class="form-group">
+          {{#each model as |user|}}
+            {{#bs-button type="primary"
+                class=(concat "list-group-item list-group-item-action" (if (eq user.name nameEntry) " active"))
+                onClick=(action (mut nameEntry) user.name)}}
+              {{fa-icon "user"}}
+              {{user.name}}
+            {{/bs-button}}
+          {{/each}}
+        </div>
+        
+        {{bs-button defaultText="Next" type="primary" onClick=(action "login" nameEntry)}}
+        
+        {{#if displayNoNameError}}
+          <small class="text-danger">
+            A name must be entered
+          </small>
+        {{/if}}
+        
+      </form>
+    </login-panel>
+  {{/if}}
+
+</div>

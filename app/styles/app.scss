@@ -1,2 +1,17 @@
-
 @import "ember-bootstrap/bootstrap";
+
+body {
+  background-color: gray;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+login-panel, main-panel {
+  display: block;
+}
+
+login-panel form {
+  max-width: 300px;
+}

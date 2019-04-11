@@ -26,9 +26,8 @@ export default function() {
   
   this.namespace = '';
   
-  this.get('/users', (schema/*, request*/) => {
-    return schema.users.all();
-  });
+  this.get('/users');
+  this.post('/users');
   
   this.get('/quizzes');
   
