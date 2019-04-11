@@ -28,8 +28,17 @@ export default function() {
   
   this.get('/users');
   this.post('/users');
+  this.patch('/users/:id');
   
   this.get('/quizzes');
+  this.get('/quizzes/:id', function(db, request) {
+    let id = request.params.id;
+    return db.quizzes.find(id);
+  });
   
   this.get('/questions');
+  this.get('/questions/:id', function(db, request) {
+    let id = request.params.id;
+    return db.questions.find(id);
+  });
 }
