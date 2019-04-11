@@ -1,0 +1,10 @@
+<h1 class="display-4">
+  Choose your quiz
+</h1>
+<hr class="my-4">
+
+<ul class="list-group quiz-list">
+  {{#each model as |quiz|}}
+    Quiz {{quiz.id}}
+  {{/each}}
+</ul>
