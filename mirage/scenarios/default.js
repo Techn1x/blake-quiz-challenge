@@ -8,4 +8,6 @@ export default function(server) {
   // server.createList('post', 10);
   
   server.loadFixtures('users');
+  server.loadFixtures('quizzes');
+  server.loadFixtures('questions');
 }

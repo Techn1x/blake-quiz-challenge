@@ -29,4 +29,8 @@ export default function() {
   this.get('/users', (schema/*, request*/) => {
     return schema.users.all();
   });
+  
+  this.get('/quizzes');
+  
+  this.get('/questions');
 }
