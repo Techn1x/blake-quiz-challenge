@@ -5,5 +5,9 @@
 
     Setting `disableAnalytics` to true will prevent any data from being sent.
   */
-  "disableAnalytics": false
+  "disableAnalytics": true,
+  "liveReload": true,
+  "liveReloadPort": 8081,
+  /*"host": "0.0.0.0",*/
+  "port": 8080  // Since updating to Ember 3.1, need to specify the port for some reason otherwise you get "Port 8080 already in use" error
 }
