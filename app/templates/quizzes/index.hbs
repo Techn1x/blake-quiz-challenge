@@ -4,7 +4,11 @@
 <hr class="my-4">
 
 <ul class="list-group quiz-list">
-  {{#each model as |quiz|}}
-    Quiz {{quiz.id}}
+  {{#each model as |quiz index|}}
+    {{quiz-list-item
+        quiz=quiz
+        enabled=(eq currentQuizIndex index)
+        onClick=(action "transitionToQuiz" quiz.id)
+        answeredQuiz=(find-by "quizId" quiz.id currentUser.user.results)}}
   {{/each}}
 </ul>
