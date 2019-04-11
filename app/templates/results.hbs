@@ -1,0 +1,18 @@
+<h1 class="display-4">
+  Quiz results
+</h1>
+
+You have completed {{currentUser.user.results.length}} of {{model.length}} quizzes
+{{#bs-progress as |p|}}
+  {{p.bar value=currentUser.user.results.length minValue=-0.1 maxValue=model.length}}
+{{/bs-progress}}
+
+<hr class="my-4">
+
+{{!-- For each finished quiz, show a quiz result component --}}
+{{#each currentUser.user.results as |result i|}}
+  {{#let (get-index model i) as |quiz|}}
+    {{quiz.id}}
+    {{result.quizId}}
+  {{/let}}
+{{/each}}
