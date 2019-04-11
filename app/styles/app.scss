@@ -15,3 +15,24 @@ login-panel, main-panel {
 login-panel form {
   max-width: 300px;
 }
+
+main-panel.jumbotron {
+  border-top-left-radius: 0px;
+  
+  .quiz-list {
+    max-width: 300px;
+    
+    quiz-title {
+      margin-right: 10px;
+    }
+  }
+}
+
+.nav-link:not(.active) {
+  color: white;
+  
+  &:hover {
+    color: black;
+    background-color: white;
+  }
+}
