@@ -23,4 +23,10 @@ export default function() {
 
     http://www.ember-cli-mirage.com/docs/v0.4.x/shorthands/
   */
+  
+  this.namespace = '';
+  
+  this.get('/users', (schema/*, request*/) => {
+    return schema.users.all();
+  });
 }
